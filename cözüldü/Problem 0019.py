@@ -1,0 +1,1 @@
+## Excelde Çözüldü
