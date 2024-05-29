@@ -1,13 +1,18 @@
-from decimal import *
+from myTools import *
 import math
 
-getcontext().prec=1000
 
-for i in range(1,1001):
-    s = str(Decimal(1)/Decimal(i))
-    if len(s) > 900:
+rkm = _
+"0123456789"            +9
+"0123456798"    9-8     +81
+"0123456879"    9-7     +18
+"0123456897"    9-8     +81
+"0123456978"            +9
+"0123456987"
+"0123459678"
 
-        print(i,len(s),s)
+a = yerDegistir(1234, 1, 2)
+print(a)
 
 #
 # 0588235294117647
