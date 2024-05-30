@@ -1,5 +1,7 @@
 import math
 
+
+
 belirlenmisAsalSayilar = []
 """ 2.000.000 a kadar hesaplanan asal sayılar"""
 
@@ -76,7 +78,7 @@ def Easalmi(sayi):
 
 # 1709600813
 
-def AsalOlmayanlar(max):
+def AsalOlabilecekler(max):
     olabilecek = []
     for i in range(max):
         if i % 2 != 0 and str(i)[-1] != "5" and rakamlarToplami(i) % 3 != 0:
@@ -85,10 +87,11 @@ def AsalOlmayanlar(max):
 
 
 def TolgaAsalBulma(sayi):
-    if sayi % 2 == 0:
+    sayi = abs(sayi)
+    if sayi % 2 == 0 and sayi != 2:
         return False
     for i in range(3, int(math.sqrt(sayi)) + 1, 2):
-        if sayi % i == 0:
+        if sayi % i == 0  and sayi != 2:
             return False
     return True
 
@@ -97,3 +100,59 @@ def yerDegistir(st, a, b):
     st = list(str(st))
     st[a],st[b]= st[b],st[a]
     return "".join(st)
+
+def bolenSayisi(sayi):
+    i = 2
+    carpan = []
+    kackere = 0
+    while i <= int(sayi/2):
+        bolunen = sayi
+        if TolgaAsalBulma(i):
+            if bolunen % i == 0:
+                while True:
+                    bolunen = bolunen / i
+                    kackere += 1
+                    if bolunen % i != 0:
+                        break
+                carpan.append([i, kackere])
+        kackere = 0
+        i += 1
+    bolenSayisi = 1
+    for i in carpan:
+        bolenSayisi = bolenSayisi * (i[1] + 1)
+    return bolenSayisi
+
+def carpanlar(sayi):
+    i = 2
+    carpan = []
+    kackere = 0
+    while i <= int(sayi/2):
+        bolunen = sayi
+        if TolgaAsalBulma(i):
+            if bolunen % i == 0:
+                while True:
+                    bolunen = bolunen / i
+                    kackere += 1
+                    if bolunen % i != 0:
+                        break
+                carpan.append([i, kackere])
+        kackere = 0
+        i += 1
+    bolenSayisi = 1
+    for i in carpan:
+        bolenSayisi = bolenSayisi * (i[1] + 1)
+    return carpan
+
+def permutasyonSirasi(liste,kacinci):
+    seri = liste
+    uzunluk = len(seri)
+    sira = []
+    hedef = kacinci-1
+    # 10 ('2', '3', '4', '1')
+    for i in range(uzunluk, 0, -1):
+        fak = math.factorial(i - 1)
+        el = hedef // fak
+        sira.append(seri[el])
+        seri.pop(el)
+        hedef = hedef - (el) * fak
+    return sira
