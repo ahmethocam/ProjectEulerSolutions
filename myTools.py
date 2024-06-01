@@ -1,7 +1,5 @@
 import math
 
-
-
 belirlenmisAsalSayilar = []
 """ 2.000.000 a kadar hesaplanan asal sayılar"""
 
@@ -34,49 +32,13 @@ def terstenYaz(yazi):
     return txt
 
 
-def asalSayilar(min=2, max=1000):
+def asalSayilar(mins=2, maxs=1000):
     asallar = []
-    for i in range(min, max):
-        if i % 1000 == 0:
-            print(i)
-        if asalmi(i):
+    for i in range(mins, maxs):
+        if TolgaAsalBulma(i):
             asallar.append(i)
     return asallar
 
-
-def asalmi(sayi):
-    s = math.floor(math.sqrt(sayi))
-    a = asalSayilar(2, s + 1)
-    asal = True
-    for k in a:
-        if sayi % k == 0:
-            asal = False
-            break
-    return asal
-
-
-def EasalSayilar(min=2, max=1000):
-    asallar = [2]
-    for i in range(3, max):
-        if i % 1000 == 0:
-            print(i)
-        if Easalmi(i):
-            asallar.append(i)
-    return asallar
-
-
-def Easalmi(sayi):
-    asal = True
-    if str(sayi)[-1] == "5":
-        return False
-    for k in range(2, int(sayi / 2), 2):
-        if sayi % k == 0:
-            asal = False
-            break
-    return asal
-
-
-# 1709600813
 
 def AsalOlabilecekler(max):
     olabilecek = []
@@ -91,21 +53,22 @@ def TolgaAsalBulma(sayi):
     if sayi % 2 == 0 and sayi != 2:
         return False
     for i in range(3, int(math.sqrt(sayi)) + 1, 2):
-        if sayi % i == 0  and sayi != 2:
+        if sayi % i == 0 and sayi != 2:
             return False
     return True
 
 
 def yerDegistir(st, a, b):
     st = list(str(st))
-    st[a],st[b]= st[b],st[a]
+    st[a], st[b] = st[b], st[a]
     return "".join(st)
+
 
 def bolenSayisi(sayi):
     i = 2
     carpan = []
     kackere = 0
-    while i <= int(sayi/2):
+    while i <= int(sayi / 2):
         bolunen = sayi
         if TolgaAsalBulma(i):
             if bolunen % i == 0:
@@ -122,11 +85,12 @@ def bolenSayisi(sayi):
         bolenSayisi = bolenSayisi * (i[1] + 1)
     return bolenSayisi
 
+
 def carpanlar(sayi):
     i = 2
     carpan = []
     kackere = 0
-    while i <= int(sayi/2):
+    while i <= int(sayi / 2):
         bolunen = sayi
         if TolgaAsalBulma(i):
             if bolunen % i == 0:
@@ -143,11 +107,12 @@ def carpanlar(sayi):
         bolenSayisi = bolenSayisi * (i[1] + 1)
     return carpan
 
-def permutasyonSirasi(liste,kacinci):
+
+def permutasyonSirasi(liste, kacinci):
     seri = liste
     uzunluk = len(seri)
     sira = []
-    hedef = kacinci-1
+    hedef = kacinci - 1
     # 10 ('2', '3', '4', '1')
     for i in range(uzunluk, 0, -1):
         fak = math.factorial(i - 1)
@@ -156,3 +121,25 @@ def permutasyonSirasi(liste,kacinci):
         seri.pop(el)
         hedef = hedef - (el) * fak
     return sira
+
+
+def devreden(sayi):
+    sayi = sayi[2:]
+    bulundu = False
+    devreden = "";
+
+    for i in range(1000):
+        for k in range(1, int(len(sayi))):
+            if sayi[i:k + i] == sayi[k + i:2 * k + i]:
+                if sayi[k + i:2 * k + i] == sayi[2 * k + i:3 * k + i]:
+                    if sayi[2 * k + i:3 * k + i] == sayi[3 * k + i:4 * k + i]:
+                        # print(sayi[i:k + i], " - ", sayi[k + i:2 * k + i])
+                        devreden = sayi[i:k + i]
+                        bulundu = True
+                        break
+        if bulundu:
+            break
+    if len(devreden) > 0:
+        return [len(devreden), devreden]
+    else:
+        return False

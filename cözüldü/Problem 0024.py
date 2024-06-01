@@ -1,14 +1,10 @@
 import math
-
-print(math.perm(10))
+from myTools import permutasyonSirasi
 
 rakamlar = list("0123456789")
-print(rakamlar)
 hedef = 1000000
-for i in range(len(rakamlar),0,-1):
-    birinci = rakamlar[10-i]
 
-    print(birinci)
+print(permutasyonSirasi(rakamlar,hedef))
 
 
 
