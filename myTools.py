@@ -1,6 +1,7 @@
 import math
 
 belirlenmisAsalSayilar = []
+
 """ 2.000.000 a kadar hesaplanan asal sayılar"""
 
 
